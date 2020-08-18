@@ -1,0 +1,15 @@
+#!/bin/sh
+for i in $*
+do 
+   if test -d $i
+    then
+      chmod a+rx $i
+      echo "Directory '$i' is now made public."
+   elif test -f $i
+    then
+      chmod a+r $i
+      echo "File '$i' is now made public."
+   else
+      echo "File'$i' does not exist." 
+   fi
+done

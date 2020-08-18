@@ -1,0 +1,4 @@
+#!/bin/sh
+echo -n "Enter the name"
+read string
+grep -i $string ph.txt

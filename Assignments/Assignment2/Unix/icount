@@ -1,0 +1,54 @@
+#!/bin/sh
+# EECS2031   - Assignment 2
+# Filename   : icount
+# Author     : Balakrishnan Lakshmi, Rajkumar
+# Email      : kumarraj@my.yorku.ca
+# Login ID   : kumarraj
+# Student ID : 213141197
+
+
+echo -n "Enter input file name: "
+read myfile
+if test ! -e $myfile
+then 
+  echo "File '$myfile' does not exist."
+  exit 0
+
+elif test ! -r $myfile
+then 
+  echo "File '$myfile' is not readable."
+  exit 0
+
+else 
+  echo -n "Count lines, words, characters or all three (l, m, c, a)? "
+  read mychoice
+
+  while test $mychoice != l && test $mychoice != m && test $mychoice != c && test $mychoice != a && test $mychoice != L && test $mychoice != M && test $mychoice != C && test $mychoice != A
+  do
+   echo "Invalid option"
+   echo -n "Count lines, words, characters or all three (l, m, c, a)? "
+   read mychoice
+  done
+  
+  outputl=`cat $myfile | wc -l`
+  outputw=`cat $myfile | wc -w`
+  outputc=`cat $myfile | wc -c`
+
+  if test $mychoice = "l" || test $mychoice = "L"
+  then
+    echo "File '$myfile' contains $outputl lines."
+  
+  elif test $mychoice = "m" || test $mychoice = "M" 
+  then
+    echo "File '$myfile' contains $outputw words."
+
+  elif test $mychoice = "c" || test $mychoice = "C" 
+  then
+    echo "File '$myfile' contains $outputc characters."
+ 
+  elif test $mychoice = "a" || test $mychoice = "A" 
+  then
+    echo "File '$myfile' contains $outputl lines, $outputw words, $outputc characters."
+  fi
+fi
+    

@@ -1,0 +1,12 @@
+#!/bin/sh
+if test -d $1
+  then
+      chmod a+rx $1
+      echo "Directory '$1' is now made public."
+elif test -f $1
+   then
+      chmod a+r $1
+      echo "File '$1' is now made public."
+else
+      echo "File'$1' does not exist." 
+fi

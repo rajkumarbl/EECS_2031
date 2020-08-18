@@ -1,0 +1,8 @@
+#!/bin/sh
+if test -d $1
+  then
+      pwd $1
+
+else
+      echo "File'$1' does not exist." 
+fi

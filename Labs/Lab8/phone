@@ -1,0 +1,4 @@
+#!/bin/sh
+echo -n "Enter the name to search: "
+read string
+grep -i $string phone_book.txt

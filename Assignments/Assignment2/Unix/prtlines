@@ -1,0 +1,54 @@
+#!/bin/sh
+# EECS2031   - Assignment 2
+# Filename   : prtlines
+# Author     : Balakrishnan Lakshmi, Rajkumar
+# Email      : kumarraj@my.yorku.ca
+# Login ID   : kumarraj
+# Student ID : 213141197
+
+echo -n "Enter input file name: "
+read myinfile
+if test ! -e $myinfile
+then 
+  echo "File '$myinfile' does not exist."
+  exit 0
+
+elif test ! -r $myinfile
+then 
+  echo "File '$myinfile' is not readable."
+  exit 0
+
+else 
+  inlines=`cat $myinfile | wc -l`
+  echo "File '$myinfile' has $inlines lines."
+
+  echo -n "From line: " 
+  read fromline
+  
+  while test $fromline -gt $inlines || test $fromline -lt 1
+  do
+    echo  "Invalid line number" 
+    echo -n "From line: " 
+    read fromline
+  done
+
+  echo -n "To line: " 
+  read toline
+  
+  while test $toline -gt $inlines || test $toline -lt $fromline
+  do
+    echo  "Invalid line number" 
+    echo -n "To line: " 
+    read toline
+  done
+  
+  count=1
+  cat $myinfile | while read line
+  do
+      if test $count -ge $fromline && test $count -le $toline
+      then
+         echo "$count: $line"
+      fi
+      count=`expr $count + 1`
+  done 
+fi

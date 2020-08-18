@@ -1,0 +1,49 @@
+#!/bin/sh
+# EECS2031   - Assignment 2
+# Filename   : myutil
+# Author     : Balakrishnan Lakshmi, Rajkumar
+# Email      : kumarraj@my.yorku.ca
+# Login ID   : kumarraj
+# Student ID : 213141197
+
+
+mymenu="================ MENU ================
+s: Search for a word
+c: Count lines, words, characters
+f: List all ordinary files in current directory
+v: View content of file
+d: Double spacing
+a: Add line numbers
+l: Display specified lines in file
+h: Help / Display this menu
+r: Clear the screen
+q: Quit the program
+======================================
+"
+
+echo    "$mymenu"
+echo -n "Enter command: "
+read mychoice
+
+while test $mychoice != q && test $mychoice != Q
+do
+case $mychoice in 
+     s|S) ./isearch;;
+     c|C) ./icount ;;
+     f|F) ./allfiles ;;
+     v|V) ./fdisplay ;;
+     d|D) ./doublesp ;;
+     a|A) ./addlines ;;
+     l|L) ./prtlines ;;
+     h|H) echo -ne "$mymenu" ;;
+     r|R) clear ;;
+     q|Q) exit 1 ;;
+       *) echo "Invalid command" ;;
+esac
+echo -e "\n$mymenu"
+echo -n "Enter command: "
+read mychoice
+done
+
+
+

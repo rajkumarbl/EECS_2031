@@ -1,0 +1,50 @@
+#!/bin/sh
+# EECS2031   - Assignment 2
+# Filename   : isearch
+# Author     : Balakrishnan Lakshmi, Rajkumar
+# Email      : kumarraj@my.yorku.ca
+# Login ID   : kumarraj
+# Student ID : 213141197
+
+
+echo -n "Enter the file name: "
+read myfile
+if test ! -e $myfile
+then 
+  echo "File '$myfile' does not exist."
+  exit 0
+
+elif test ! -r $myfile
+then 
+  echo "File '$myfile' is not readable."
+  exit 0
+
+else 
+  echo -n "Enter the word to search for: "
+  read myword
+  echo -n "Case-sensitive (y/n)? "
+  read mychoice
+
+  while test $mychoice != y && test $mychoice != n && test $mychoice != Y && test $mychoice != N
+  do
+   echo "Invalid option."
+   echo -n "Case-sensitive (y/n)? "
+   read mychoice
+  done
+  
+
+  if test $mychoice = "y" || test $mychoice = "Y"
+  then
+     grep $myword $myfile
+      if test $? -ne 0
+      then
+        echo "Word '$myword' not found."
+      fi
+  else 
+      grep -i $myword $myfile
+      if test $? -ne 0
+      then
+        echo "Word '$myword' not found."
+      fi
+  fi
+fi    

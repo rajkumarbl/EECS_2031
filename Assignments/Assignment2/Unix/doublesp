@@ -1,0 +1,80 @@
+#!/bin/sh
+# EECS2031   - Assignment 2
+# Filename   : doublesp
+# Author     : Balakrishnan Lakshmi, Rajkumar
+# Email      : kumarraj@my.yorku.ca
+# Login ID   : kumarraj
+# Student ID : 213141197
+
+
+echo -n "Enter input file name: "
+read myinfile
+if test ! -e $myinfile
+then 
+  echo "File '$myinfile' does not exist."
+  exit 0
+
+elif test ! -r $myinfile
+then 
+  echo "File '$myinfile' is not readable."
+  exit 0
+
+else 
+  echo -n "Enter output file name: "
+  read myoutfile
+
+  if test -e $myoutfile
+   then 
+     if test ! -w $myoutfile
+       then 
+       echo "File '$myoutfile' is not writable."
+       exit 0
+    fi
+     echo "File '$myoutfile' exists."
+     echo -n "Append to it (y/n)? "
+     read mychoice 
+
+     while test $mychoice != y && test $mychoice != n && test $mychoice != Y && test $mychoice != N
+     do
+       echo "Invalid option"
+       echo -n "Append to it (y/n)? "
+       read mychoice
+     done
+     
+     if test $mychoice = "y" || test $mychoice = "Y"
+     then 
+     count=1
+     inlines=`cat $myinfile | wc -l`
+
+     cat $myinfile | while read line
+     do
+     if test `expr $count % 2` -eq 0 && test $count -ne 1
+     then 
+      echo -e "$line\n\n"
+      count=`expr $count + 1`
+     else
+      echo -e "$line"
+      count=`expr $count + 1`
+      fi
+      done >> $myoutfile
+      else
+      exit 0
+     fi
+   else
+      count=1
+    cat $myinfile | while read line
+     do
+     if test `expr $count % 2` -eq 0 && test $count -ne 1
+     then 
+      echo -e "$line\n\n"
+      count=`expr $count + 1`
+     else
+      echo -e "$line"
+      count=`expr $count + 1`
+      fi
+      done > $myoutfile
+   fi
+     
+ fi
+
+

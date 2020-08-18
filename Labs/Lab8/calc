@@ -1,0 +1,15 @@
+#!/bin/sh
+if test $# -ne 3
+ then 
+    echo "Usage: calc [operand_1] [operator] [operand_2]"
+ else
+    case $2 in 
+       +) result=`expr $1 + $3`;;       
+       -) result=`expr $1 - $3`;;      
+       x) result=`expr $1 \* $3`;;      
+       /) result=`expr $1 / $3`;;    
+       %) result=`expr $1 % $3`;;       
+       *) echo "Operator '$2' not supported.";;
+    esac 
+echo $result;
+fi

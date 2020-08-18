@@ -1,0 +1,16 @@
+#!/bin/sh
+# EECS2031   - Assignment 2
+# Filename   : allfiles
+# Author     : Balakrishnan Lakshmi, Rajkumar
+# Email      : kumarraj@my.yorku.ca
+# Login ID   : kumarraj
+# Student ID : 213141197
+
+for i in *
+do
+  if test -f $i
+  then
+    ls $i
+  fi
+done
+

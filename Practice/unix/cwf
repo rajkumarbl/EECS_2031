@@ -1,0 +1,7 @@
+#!/bin/sh
+read line
+while test $line != "q"
+do 
+echo  $line
+read line
+done
